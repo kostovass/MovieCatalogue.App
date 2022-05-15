@@ -1,0 +1,61 @@
+﻿@page "/movieedit"
+@page "/movieedit/{Id}"
+
+
+@page "/employeeedit"
+@page "/employeeedit/{EmployeeId}"
+
+@using BethanysPieShopHRM.Shared
+
+@if (!Saved)
+{
+    <section class="movie-edit">
+        <h1 class="page-title">Details for @Movie.Name</h1>
+        <EditForm Model="@Movie" OnValidSubmit="@HandleValidSubmit"
+                  OnInvalidSubmit="@HandleInvalidSubmit">
+            <DataAnnotationsValidator />
+            <ValidationSummary></ValidationSummary>
+
+             <div class="form-group row">
+                <label for="image" class="col-sm-3">Select image: </label>
+                <InputFile OnChange="OnInputFileChange" multiple />
+            </div>
+
+            <div class="form-group row">
+                <label for="Name" class="col-sm-3">Name: </label>
+                <InputText id="Name" class="form-control col-sm-8" @bind-Value="@Movie.Name" placeholder="Enter name"></InputText>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => Movie.Name)" />
+            </div>
+
+
+            <div class="form-group row">
+                <label for="jobcategory" class="col-sm-3">Job category: </label>
+                <InputSelect id="jobcategory" class="form-control col-sm-8" @bind-Value="@JobCategoryId">
+                    @foreach (var jobCategory in JobCategories)
+                        {
+                        <option value="@jobCategory.JobCategoryId">@jobCategory.JobCategoryName</option>
+                        }
+                </InputSelect>
+            </div>
+
+
+            <button type="submit" class="btn btn-primary edit-btn">Save movie</button>
+
+            @if (Movie.Id > 0)
+            {
+                <a class="btn btn-danger" @onclick="@DeleteMovie">
+                    Delete
+                </a>
+            }
+
+            <a class="btn btn-outline-primary" @onclick="@NavigateToOverview">Back to overview</a>
+        </EditForm>
+    </section>
+
+}
+else
+{
+    <div class="alert @StatusClass">@Message</div>
+
+
+}

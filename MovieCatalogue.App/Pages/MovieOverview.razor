@@ -1,0 +1,37 @@
+﻿@page "/movieoverview"
+
+<h1 class="page-title">All movies</h1>
+
+@if (Movies == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    
+<table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Movie ID</th>
+                <th>Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Movies)
+            {
+                <tr> 
+                    <td><img src="@($"https://gillcleerenpluralsight.blob.core.windows.net/person/{movie.Id}-small.jpg")" class="rounded-circle" /></td>
+                    <td>@movie.Id</td>
+                    <td>@movie.Name</td>
+                    <td>
+                        <a href="@($"moviedetail/{movie.Id}")" class="btn btn-primary table-btn">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+</table>
+}

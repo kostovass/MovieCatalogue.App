@@ -1,0 +1,31 @@
+﻿@page "/moviedetail/{Id}"
+
+<h1 class="page-title">Details for @Movie.Name</h1>
+
+<div class="col-12 row">
+	<div class="col-2">
+		<img src="@($"https://gillcleerenpluralsight.blob.core.windows.net/person/{Movie.Id}.jpg")" class="img-responsive rounded-circle movie-detail-img" />
+	</div>
+	<div class="col-10 row">
+		<div class="col-xs-12 col-sm-8">
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">Movie ID</label>
+				<div class="col-sm-8">
+					<label type="text" class="form-control-plaintext">@Movie.Id</label>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">Name</label>
+				<div class="col-sm-8">
+					<label type="text" readonly class="form-control-plaintext">@Movie.Name</label>
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-4 col-form-label">Rating</label>
+				<div class="col-sm-8">
+					<label type="text" readonly class="form-control-plaintext">@Movie.Rating</label>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
